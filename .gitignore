@@ -1,0 +1,61 @@
+__pycache__
+.cache
+aa-atlas-venv
+.pyenv
+.pyenv-atlas
+*.log
+*.pyc
+.Python
+.pytest_cache
+.DS_Store
+
+# Ignore config files except the sample one config.sample.json
+config.json
+config.dev.json
+config.test.json
+config.*.json
+!config.sample.json
+
+.env
+atlas-development.service-account.json
+gcp-service-account.credentials.json
+gsc-credential.*.json
+*.tar.gz
+*.csv
+!etiqa.flatfile.*.csv
+!tests/fixtures/mer/**
+*.db
+
+*.xlsx
+!*.test.xlsx
+!test_flip_sponsored.xlsx
+!GJ_template.xlsx
+*.xlsx#
+
+# allows xlsx on fixtures folder
+!tests/fixtures/*.xlsx
+!tests/fixtures/sponsored-purchase/**
+!tests/fixtures2019/obfuscate_xlsx/*.xlsx
+
+*.archive
+static/*
+temp/*
+
+# virtualdirectory
+atlas-venv*
+venv*
+VirtualDirectory
+env_atlas/
+.atlas-venv/
+.python-version
+
+# venv by pyenv
+.venv
+
+# pycharm project meta-data
+.idea/
+.vscode/
+*.swp
+
+# atlas local run log
+atlas.log
