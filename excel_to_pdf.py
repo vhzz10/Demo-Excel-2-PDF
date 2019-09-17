@@ -16,8 +16,9 @@ def excel_to_pdf(xlsx_file:'str path', timeout=None) -> 'pdf_file path':
     _ = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
     #endregion
 
-    pdf_file = f'{PROJECT_ROOT}/MOCK_DATA.test.pdf'
-    if not os.path.isfile(pdf_file): raise Exception("Can not convert")
+    pdf_file = f'{os.path.splitext(xlsx_file)[0]}.pdf'  # filename without extension ref. https://stackoverflow.com/a/678242/248616
+    if not os.path.isfile(pdf_file):
+        raise Exception(f'File not found {pdf_file} - Can not convert {xlsx_file}')
     return pdf_file
 
 
@@ -27,7 +28,19 @@ def libreoffice_exec():
     return 'libreoffice'
 
 
+def test_excel2pdf():
+    xlsx_file = f'{PROJECT_ROOT}/MOCK_DATA.test.xlsx'
+    pdf_file  = excel_to_pdf(xlsx_file)
+    print(f'Converted {xlsx_file} to {pdf_file}')
+
+
+def test_html2pdf():
+    html_file = f'{PROJECT_ROOT}/test.html'
+    pdf_file  = excel_to_pdf(html_file)
+    print(f'Converted {html_file} to {pdf_file}')
+
+
 
 if __name__ == '__main__':
-    pdf_file = excel_to_pdf(xlsx_file=f'{PROJECT_ROOT}/MOCK_DATA.test.xlsx')
-    print(f'Converted to {pdf_file}')
+    test_excel2pdf()
+    test_html2pdf()
