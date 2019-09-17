@@ -5,12 +5,11 @@ import os
 
 PROJECT_ROOT  = os.path.abspath(os.path.dirname(__file__))
 template_path = f'{PROJECT_ROOT}/MOCK_DATA.test.xlsx'
-path          = f'{PROJECT_ROOT}/'
 
 
-def convert_to(timeout=None) -> 'pdf file':
-    args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', '--outdir', path, template_path]
-
+def convert_to(timeout=None) -> 'pdf_file path':
+    # run libreoffice --headless --convert-to pdf --outdir :PROJECT_ROOT :xlsx_file
+    args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', '--outdir', PROJECT_ROOT, template_path]
     _ = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
 
     pdf_file = f'{PROJECT_ROOT}/MOCK_DATA.pdf'
