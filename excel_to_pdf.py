@@ -3,21 +3,21 @@ import subprocess
 import os
 
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-
+PROJECT_ROOT  = os.path.abspath(os.path.dirname(__file__))
 template_path = f'{PROJECT_ROOT}/MOCK_DATA.test.xlsx'
-path = f'{PROJECT_ROOT}/'
+path          = f'{PROJECT_ROOT}/'
 
 
-def convert_to(timeout=None):
+def convert_to(timeout=None) -> 'pdf file':
     args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', '--outdir', path, template_path]
 
-    process = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
-    filename = os.path.isfile(f'{path}MOCK_DATA.pdf')
-    if not filename:
+    _ = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+
+    pdf_file = f'{PROJECT_ROOT}/MOCK_DATA.pdf'
+    if not os.path.isfile(pdf_file):
         raise Exception("Can not convert")
-    else:
-        return 'MOCK_DATA.test.pdf'
+
+    return pdf_file
 
 
 def libreoffice_exec():
