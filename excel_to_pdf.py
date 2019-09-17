@@ -4,13 +4,17 @@ import os
 
 
 PROJECT_ROOT  = os.path.abspath(os.path.dirname(__file__))
-template_path = f'{PROJECT_ROOT}/MOCK_DATA.test.xlsx'
 
+def excel_to_pdf(xlsx_file:'str path', timeout=None) -> 'pdf_file path':
 
-def convert_to(timeout=None) -> 'pdf_file path':
-    # run libreoffice --headless --convert-to pdf --outdir :PROJECT_ROOT :xlsx_file
-    args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', '--outdir', PROJECT_ROOT, template_path]
+    #region run libreoffice
+    """
+    targeted command
+    libreoffice --headless --convert-to pdf --outdir :PROJECT_ROOT :xlsx_file
+    """
+    args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', '--outdir', PROJECT_ROOT, xlsx_file]
     _ = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+    #endregion
 
     pdf_file = f'{PROJECT_ROOT}/MOCK_DATA.pdf'
     if not os.path.isfile(pdf_file):
@@ -27,4 +31,5 @@ def libreoffice_exec():
 
 
 if __name__ == '__main__':
-    print('Converted to ' + convert_to())
+    pdf_file = excel_to_pdf(xlsx_file=f'{PROJECT_ROOT}/MOCK_DATA.test.xlsx')
+    print(f'Converted to {pdf_file}')
