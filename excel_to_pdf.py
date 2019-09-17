@@ -17,7 +17,7 @@ def convert_to(timeout=None):
     if not filename:
         raise Exception("Can not convert")
     else:
-        return 'MOCK_DATA.pdf'
+        return 'MOCK_DATA.test.pdf'
 
 
 def libreoffice_exec():
