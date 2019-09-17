@@ -16,10 +16,8 @@ def excel_to_pdf(xlsx_file:'str path', timeout=None) -> 'pdf_file path':
     _ = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
     #endregion
 
-    pdf_file = f'{PROJECT_ROOT}/MOCK_DATA.pdf'
-    if not os.path.isfile(pdf_file):
-        raise Exception("Can not convert")
-
+    pdf_file = f'{PROJECT_ROOT}/MOCK_DATA.test.pdf'
+    if not os.path.isfile(pdf_file): raise Exception("Can not convert")
     return pdf_file
 
 
