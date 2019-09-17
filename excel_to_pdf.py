@@ -5,7 +5,7 @@ import os
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-template_path = f'{PROJECT_ROOT}/MOCK_DATA.xlsx'
+template_path = f'{PROJECT_ROOT}/MOCK_DATA.test.xlsx'
 path = f'{PROJECT_ROOT}/'
 
 
